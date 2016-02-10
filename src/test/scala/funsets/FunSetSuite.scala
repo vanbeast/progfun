@@ -125,10 +125,27 @@ class FunSetSuite extends FunSuite {
   test("add 10 to all elements in set") {
     new TestSets {
       val s = union(s3, union(s1,s2))
-      printSet(s)
       val mappedS = map(s, x => x + 10)
-      println(FunSets.toString(mappedS))
       assert(forall(mappedS, x => x > 10))
+      val mappedS1 = map(s, x => x*x)
+      assert(contains(mappedS1, 1))
+      assert(contains(mappedS1, 4))
+      assert(contains(mappedS1, 9))
+      assert(!contains(mappedS1, 2))
+    }
+  }
+  
+  test("test intersect and diff"){
+    new TestSets {
+      val s12 = union(s1, s2)
+      val s13 = union(s1, s3)
+      val ints = intersect(s12, s13)
+      assert(contains(ints, 1))
+      assert(!contains(ints, 2))
+      
+      val intd = diff(s12, s13)
+      assert(contains(intd, 2))
+      assert(!contains(intd, 1))
     }
   }
 
