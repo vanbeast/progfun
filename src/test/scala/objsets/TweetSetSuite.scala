@@ -34,6 +34,7 @@ class TweetSetSuite extends FunSuite {
 
   test("filter: a on set5") {
     new TestSets {
+      set5.foreach { tweet => println(tweet.user) }
       assert(size(set5.filter(tw => tw.user == "a")) === 1)
     }
   }
@@ -52,6 +53,7 @@ class TweetSetSuite extends FunSuite {
 
   test("union: with empty set (1)") {
     new TestSets {
+      println(set5.union(set1))
       assert(size(set5.union(set1)) === 4)
     }
   }
